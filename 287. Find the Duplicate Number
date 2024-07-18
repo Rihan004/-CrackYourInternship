@@ -1,0 +1,35 @@
+287. Find the Duplicate Number
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+      Arrays.sort(nums);
+      int len =nums.length;
+      for(int i=0; i<len; i++)
+      {
+            if(BinarSearch(nums , i+1 , len-1 , nums[i])){
+                return nums[i];
+            }
+      }
+
+      return 0;
+    }
+
+    public boolean BinarSearch(int [] nums , int left , int right , int tar)
+    {
+        while(left <= right){
+            int mid = left + (right - left)/2;
+            if(nums[mid] == tar){
+                return true;
+            }
+            else if(nums[mid]<tar){
+                left = mid+1;
+            }
+            else
+            {
+               right = mid -1;
+            }
+        }
+
+        return false;
+    }
+}
